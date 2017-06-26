@@ -3,5 +3,5 @@ project(theoinf)
 
 set(CMAKE_C_STANDARD 11)
 
-set(SOURCE_FILES main.c hashing.h hashing.c declaration.h)
+set(SOURCE_FILES main.c hashing.h hashing.c declaration.h declaration.c helper.c)
 add_executable(theoinf ${SOURCE_FILES})
