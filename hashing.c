@@ -4,6 +4,9 @@
 
 #include "hashing.h"
 
+int (*hash_function)(const struct s_key) = NULL;
+struct s_key (*probe_function)(struct s_key, int) = NULL;
+
 int insert(struct s_element * element) {
     int errCode = checkHashAndProbeFunction();
     if (!errCode) return errCode;

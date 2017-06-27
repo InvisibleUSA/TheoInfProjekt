@@ -1,11 +1,11 @@
 //
 // Created by Erik on 26.06.2017.
 //
-#include "declaration.h"
 
 #ifndef THEOINFPROJEKT_HASHING_H
 #define THEOINFPROJEKT_HASHING_H
 
+#include "declaration.h"
 #define TABLE_LENGTH 1312
 
 struct s_element * hash_table[TABLE_LENGTH];
@@ -14,14 +14,14 @@ struct s_element * hash_table[TABLE_LENGTH];
  * Pointer to hash-function
  * It must return an array index between 0 and TABLE_LENGTH in any case
  */
-int (*hash_function)(const struct s_key) = NULL;
+int (*hash_function)(const struct s_key);
 
 /**
  * Pointer to probing-function
  * It must return a new key for probing.
  * If called with int = 0, it should return s_key
  */
-struct s_key (*probe_function)(struct s_key, int) = NULL;
+struct s_key (*probe_function)(struct s_key, int);
 
 /**
  * Contains the number of probing steps that were necessary for last call of insert, rem, get

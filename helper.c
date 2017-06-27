@@ -2,12 +2,7 @@
 // Created by Erik on 26.06.2017.
 //
 
-#include "stdio.h"
-#include "hashing.h"
-
-#ifndef THEOINFPROJEKT_HELPER_C
-#define THEOINFPROJEKT_HELPER_C
-
+#include "helper.h"
 
 int simple_hash(const struct s_key k) {
     int nr = k.n;
@@ -27,4 +22,3 @@ struct s_key simple_probe(struct s_key k, int i) {
 void print_element(const struct s_element * el) {
     printf("Key: %d%d%d%d%d, data: %d\n", el->key.x, el->key.y, el->key.n, el->key.n, el->key.n, el->data);
 }
-#endif //THEOINFPROJEKT_HELPER_C

@@ -2,7 +2,7 @@
 // Created by Erik on 26.06.2017.
 //
 
-#include "helper.c"
+#include "helper.h"
 
 int main(int argc, char ** args) {
     initialize();
