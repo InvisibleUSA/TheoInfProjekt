@@ -18,10 +18,10 @@ int (*hash_function)(const struct s_key);
 
 /**
  * Pointer to probing-function
- * It must return a new key for probing.
+ * It must return a new index for probing.
  * If called with int = 0, it should return s_key
  */
-struct s_key (*probe_function)(struct s_key, int);
+int (*probe_function)(int, int);
 
 /**
  * Contains the number of probing steps that were necessary for last call of insert, rem, get

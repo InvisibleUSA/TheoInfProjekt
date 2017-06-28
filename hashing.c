@@ -5,7 +5,7 @@
 #include "hashing.h"
 
 int (*hash_function)(const struct s_key) = NULL;
-struct s_key (*probe_function)(struct s_key, int) = NULL;
+int (*probe_function)(int, int) = NULL;
 
 int insert(struct s_element * element) {
     int errCode = checkHashAndProbeFunction();
@@ -13,10 +13,9 @@ int insert(struct s_element * element) {
 
     int pos = 0;
     int probeStep = 0;
-    struct s_key key;
+    pos = hash_function(element->key);
     do {
-        key = probe_function(element->key, probeStep++);
-        pos = hash_function(key);
+        pos = probe_function(pos, probeStep++);
         if (hash_table[pos])
             if (compare(hash_table[pos]->key, element->key))
                 return TABLE_KEY_EXISTS;
@@ -39,13 +38,12 @@ int rem(struct s_key key) {
 struct s_element * get(struct s_key key) {
     if (checkHashAndProbeFunction()) return NULL;
     int pos = 0;
-    struct s_key k;
     int probeStep = 0;
     int found = 0;
+    pos = hash_function(key);
     do {
-        k = probe_function(key, probeStep++);
-        pos = hash_function(k);
-        if (compare(hash_table[pos]->key, k))
+        pos = probe_function(pos, probeStep++);
+        if (compare(hash_table[pos]->key, key))
             found = 1;
         if (probeStep >= TABLE_LENGTH)
             return NULL;

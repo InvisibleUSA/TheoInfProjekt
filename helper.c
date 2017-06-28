@@ -11,12 +11,8 @@ int simple_hash(const struct s_key k) {
     return nr % TABLE_LENGTH;
 }
 
-struct s_key simple_probe(struct s_key k, int i) {
-    k.x = (k.x + i) % (26*26*10);
-    k.y = (k.y + i) % (26*10);
-    k.n = (k.n + i) % 10;
-
-    return k;
+int simple_probe(int hash, int i) {
+    return (hash + i) % TABLE_LENGTH;
 }
 
 void print_element(const struct s_element * el) {
