@@ -11,19 +11,19 @@ int insert(struct s_element * element) {
     int errCode = checkHashAndProbeFunction();
     if (errCode) return errCode;
 
-    int pos = 0;
+    int pos = 0, pos1;
     int probeStep = 0;
     pos = hash_function(element->key);
     do {
-        pos = probe_function(pos, probeStep++);
-        if (hash_table[pos])
-            if (compare(hash_table[pos]->key, element->key))
+        pos1 = probe_function(pos, probeStep++);
+        if (hash_table[pos1])
+            if (compare(hash_table[pos1]->key, element->key))
                 return TABLE_KEY_EXISTS;
         if (probeStep >= TABLE_LENGTH)
             return TABLE_FULL;
-    } while (hash_table[pos]);
+    } while (hash_table[pos1]);
     lastProbingSteps = probeStep - 1;
-    hash_table[pos] = element;
+    hash_table[pos1] = element;
     return 0;
 }
 
@@ -37,19 +37,19 @@ int rem(struct s_key key) {
 
 struct s_element * get(struct s_key key) {
     if (checkHashAndProbeFunction()) return NULL;
-    int pos = 0;
+    int pos = 0, pos1;
     int probeStep = 0;
     int found = 0;
     pos = hash_function(key);
     do {
-        pos = probe_function(pos, probeStep++);
-        if (compare(hash_table[pos]->key, key))
+        pos1 = probe_function(pos, probeStep++);
+        if (compare(hash_table[pos1]->key, key))
             found = 1;
         if (probeStep >= TABLE_LENGTH)
             return NULL;
     } while (!found);
     lastProbingSteps = probeStep - 1;
-    return hash_table[pos];
+    return hash_table[pos1];
 }
 
 void initialize() {

@@ -10,6 +10,8 @@
 #include "hashing.h"
 
 int simple_hash(const struct s_key k);
+int complex_hash(const struct s_key k);
+
 int simple_probe(int hash, int i);
 void print_element(const struct s_element * el);
 void print_array(struct s_element * * ar, int len);
