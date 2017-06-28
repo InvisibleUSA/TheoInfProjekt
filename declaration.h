@@ -27,7 +27,6 @@ struct s_element {
  */
 int compare(struct s_key k1, struct s_key k2);
 
-const int TABLE_KEY_NOT_FOUND;
 const int TABLE_KEY_EXISTS;
 const int TABLE_NO_HASH_FUNC;
 const int TABLE_NO_PROBE_FUNC;

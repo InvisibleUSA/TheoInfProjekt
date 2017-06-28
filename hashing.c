@@ -9,7 +9,7 @@ struct s_key (*probe_function)(struct s_key, int) = NULL;
 
 int insert(struct s_element * element) {
     int errCode = checkHashAndProbeFunction();
-    if (!errCode) return errCode;
+    if (errCode) return errCode;
 
     int pos = 0;
     int probeStep = 0;
@@ -31,13 +31,13 @@ int insert(struct s_element * element) {
 
 int rem(struct s_key key) {
     int errCode = checkHashAndProbeFunction();
-    if (!errCode) return errCode;
+    if (errCode) return errCode;
 
 
 }
 
 struct s_element * get(struct s_key key) {
-    if (!checkHashAndProbeFunction()) return NULL;
+    if (checkHashAndProbeFunction()) return NULL;
     int pos = 0;
     struct s_key k;
     int probeStep = 0;
