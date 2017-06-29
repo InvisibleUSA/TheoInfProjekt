@@ -23,7 +23,8 @@ int simple_probe(int hash, int i) {
 }
 
 void print_element(const struct s_element * el) {
-    printf("Key: %c%c%d%d%d, data: %d\n", el->key.x + 'A', el->key.y + 'A', el->key.n, el->key.n, el->key.n, el->data);
+    if (el)
+        printf("Key: %c%c%d%d%d, data: %d, rem: %d\n", el->key.x + 'A', el->key.y + 'A', el->key.n, el->key.n, el->key.n, el->data, el->removed);
 }
 
 void print_array(struct s_element * * ar, int len) {
@@ -43,5 +44,6 @@ struct s_element * genKey() {
     key->key.n = (enum Enumber) (rand() % 10);
     key->key.x = (enum Eletter) (rand() % 26);
     key->key.y = (enum Eletter) (rand() % 26);
+    key->removed = 0;
     return key;
 }

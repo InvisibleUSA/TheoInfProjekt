@@ -17,6 +17,7 @@ struct s_key {
 struct s_element {
     struct s_key key;
     int data;
+    char removed;
 };
 
 /**
@@ -31,5 +32,6 @@ const int TABLE_KEY_EXISTS;
 const int TABLE_NO_HASH_FUNC;
 const int TABLE_NO_PROBE_FUNC;
 const int TABLE_FULL;
+const int TABLE_KEY_NOT_FOUND;
 
 #endif //THEOINFPROJEKT_DECLARATION_H

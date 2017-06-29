@@ -12,3 +12,4 @@ const int TABLE_KEY_EXISTS    = 1;
 const int TABLE_NO_HASH_FUNC  = 2;
 const int TABLE_NO_PROBE_FUNC = 3;
 const int TABLE_FULL          = 4;
+const int TABLE_KEY_NOT_FOUND = 5;
