@@ -17,7 +17,7 @@ int main(int argc, char ** args) {
     struct s_element * k, * l;
     int probe = 0;
 
-   /* for (int i = 0; i < TABLE_LENGTH; i++) {
+   for (int i = 0; i < TABLE_LENGTH+10; i++) {
         k = genKey();
         int res = insert(k);
         if (res == TABLE_KEY_EXISTS) {
@@ -25,6 +25,11 @@ int main(int argc, char ** args) {
             free(k);
             i--;
             continue;
+        }
+        if (res == TABLE_FULL) {
+            printf("Table full!");
+            //TODO: expand hash table when full
+            break;
         }
         probe = lastProbingSteps;
 
@@ -39,7 +44,7 @@ int main(int argc, char ** args) {
         else
         if (k != l)
             printf("ERR\n");
-    }*/
+    }
     insert(&k1);
     insert(&k2);
     insert(&k3);
