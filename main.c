@@ -10,14 +10,11 @@ int main(int argc, char ** args) {
     initialize();
     probe_function = simple_probe;
     hash_function = simple_hash;
-    struct s_element k1 = { key : {x: B, y: M, n: n7}, data: 42};
-    struct s_element k4 = { key : {x: B, y: M, n: n7}, data: 02};
-    struct s_element k2 = { key : {x: F, y: M, n: n1}, data: 19};
-    struct s_element k3 = { key : {x: A, y: I, n: n1}, data : 11};
-    struct s_element * k, * l;
-    int probe = 0;
 
-   /* for (int i = 0; i < TABLE_LENGTH; i++) {
+    struct s_element * k, * l;
+    int probe = 0, maxprobesteps = 0;
+
+    for (int i = 0; i < TABLE_LENGTH + 10; i++) {
         k = genKey();
         int res = insert(k);
         if (res == TABLE_KEY_EXISTS) {
@@ -27,34 +24,25 @@ int main(int argc, char ** args) {
             continue;
         }
         probe = lastProbingSteps;
+        if (maxprobesteps < lastProbingSteps) maxprobesteps = lastProbingSteps;
 
         l = get(k->key);
-        printf("%d\t%d", probe, lastProbingSteps);
+        /*printf("%d\t%d", probe, lastProbingSteps);
 
         if (probe != lastProbingSteps) printf("err\n");
-        else printf("\n");
+        else printf("\n");*/
 
         if (!l)
             printf("duplicate key or error\n");
         else
         if (k != l)
             printf("ERR\n");
-    }*/
-    insert(&k1);
-    insert(&k2);
-    insert(&k3);
-    printf("%d\n", lastProbingSteps);
-    insert(&k4);
-
-    printf("%d\n", rem(k2.key));
-    print_element(get(k1.key));
-    print_element(get(k2.key));
-    print_element(get(k3.key));
-    print_element(get(k4.key));
+    }
 
     print_array(hash_table, TABLE_LENGTH);
-    /*for (int i = 0; i < TABLE_LENGTH; i++) {
+    printf("max probe: %d\n", maxprobesteps);
+    for (int i = 0; i < TABLE_LENGTH; i++) {
         free(hash_table[i]);
-    }*/
+    }
     return 0;
 }
