@@ -23,6 +23,11 @@ int main(int argc, char ** args) {
             i--;
             continue;
         }
+        if (res == TABLE_FULL) {
+            printf("Table full!");
+            //TODO: expand hash table when full
+            break;
+        }
         probe = lastProbingSteps;
         if (maxprobesteps < lastProbingSteps) maxprobesteps = lastProbingSteps;
 
