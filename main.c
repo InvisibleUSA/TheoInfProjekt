@@ -18,7 +18,7 @@ int main(int argc, char ** args) {
         k = genKey();
         int res = insert(k);
         if (res == TABLE_KEY_EXISTS) {
-           // printf("Key exists\n");
+           // printf("Key exists\nr1");
             free(k);
             i--;
             continue;
@@ -34,8 +34,8 @@ int main(int argc, char ** args) {
         l = get(k->key);
         /*printf("%d\t%d", probe, lastProbingSteps);
 
-        if (probe != lastProbingSteps) printf("err\n");
-        else printf("\n");*/
+        if (probe != lastProbingSteps) printf("err\nr1");
+        else printf("\nr1");*/
 
         if (!l)
             printf("duplicate key or error\n");

@@ -11,7 +11,9 @@ enum Enumber { n0 = 0, n1, n2, n3, n4, n5, n6, n7, n8, n9};
 struct s_key {
     enum Eletter x;
     enum Eletter y;
-    enum Enumber n;
+    enum Enumber nr1;
+    enum Enumber nr2;
+    enum Enumber nr3;
 };
 
 struct s_element {

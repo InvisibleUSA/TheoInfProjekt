@@ -5,14 +5,16 @@
 #include "helper.h"
 
 int simple_hash(const struct s_key k) {
-    int nr = k.n;
-    nr |= k.y << 4;
-    nr |=  k.x << 4+5;
+    int nr = k.nr3;
+    nr |= k.nr2 << 4;
+    nr |= k.nr1 << (4 + 4);
+    nr |= k.y << (4 + 4 + 4);
+    nr |= k.x << (4 + 4 + 4 + 5);
     return nr % TABLE_LENGTH;
 }
 
 int complex_hash(const struct s_key k) {
-    int nr = k.n * 950;
+    int nr = k.nr1 * 950;
     nr |= k.y * 950 << 4;
     nr |=  k.x  * 950 << 4+5;
     return nr % TABLE_LENGTH;
@@ -24,7 +26,7 @@ int simple_probe(int hash, int i) {
 
 void print_element(const struct s_element * el) {
     if (el)
-        printf("Key: %c%c%d%d%d, data: %d, rem: %d\n", el->key.x + 'A', el->key.y + 'A', el->key.n, el->key.n, el->key.n, el->data, el->removed);
+        printf("Key: %c%c%d%d%d, data: %d, rem: %d\n", el->key.x + 'A', el->key.y + 'A', el->key.nr1, el->key.nr2, el->key.nr3, el->data, el->removed);
 }
 
 void print_array(struct s_element * * ar, int len) {
@@ -41,7 +43,7 @@ void print_array(struct s_element * * ar, int len) {
 struct s_element * genKey() {
     struct s_element * key = malloc(sizeof(struct s_element));
     key->data = rand();
-    key->key.n = (enum Enumber) (rand() % 10);
+    key->key.nr1 = (enum Enumber) (rand() % 10);
     key->key.x = (enum Eletter) (rand() % 26);
     key->key.y = (enum Eletter) (rand() % 26);
     key->removed = 0;
