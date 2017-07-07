@@ -14,9 +14,11 @@ int simple_hash(const struct s_key k) {
 }
 
 int complex_hash(const struct s_key k) {
-    int nr = k.nr1 * 950;
-    nr |= k.y * 950 << 4;
-    nr |=  k.x  * 950 << 4+5;
+    int nr = k.nr3 * 950;
+    nr |= k.nr2 * 950 << 4;
+    nr |= k.nr1 * 950 << (4 + 4);
+    nr |= k.y * 950 << (4 + 4 + 4);
+    nr |= k.x * 950 << (4 + 4 + 4 + 5);
     return nr % TABLE_LENGTH;
 }
 
@@ -44,6 +46,8 @@ struct s_element * genKey() {
     struct s_element * key = malloc(sizeof(struct s_element));
     key->data = rand();
     key->key.nr1 = (enum Enumber) (rand() % 10);
+    key->key.nr2 = (enum Enumber) (rand() % 10);
+    key->key.nr3 = (enum Enumber) (rand() % 10);
     key->key.x = (enum Eletter) (rand() % 26);
     key->key.y = (enum Eletter) (rand() % 26);
     key->removed = 0;
