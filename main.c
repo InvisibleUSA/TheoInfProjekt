@@ -98,6 +98,40 @@ int main(int argc, char** argv)
                         if (maxprobesteps < hash_table[i]->data)
                             maxprobesteps = hash_table[i]->data;
                 printf("Maximale Sondierungsschritte: %d\n", maxprobesteps);
+
+                int currentClusterSize = 0;
+                int maxKeyChain = 0;
+                int currentIndex = 0;
+                //Cluster Max ausrechnen
+                do {
+                    if (maxKeyChain < currentClusterSize) {
+                        maxKeyChain = currentClusterSize;
+                    }
+                    if (hash_table[currentIndex] == NULL || hash_table[currentIndex]->removed == 1) {
+                        currentClusterSize = 0;
+                    }
+                    else
+                    {
+                        ++currentClusterSize;
+                    }
+
+                    ++currentIndex;
+                } while (currentIndex < TABLE_LENGTH - 1);
+                currentIndex = 0;
+                int jumpOverZeroSize = 0;
+                if (maxKeyChain < TABLE_LENGTH) {
+                    if (currentClusterSize > 0) {
+                        while (hash_table[currentIndex] != NULL && hash_table[currentIndex]->removed != 1 ) {
+                            ++currentClusterSize;
+                            ++currentIndex;
+                        }
+                        if (maxKeyChain < currentClusterSize) {
+                            maxKeyChain = currentClusterSize;
+                        }
+                    }
+                }
+                    printf("Laengste Clusterkette: %d \n", maxKeyChain);
+
                 break;
             case 2:
                 scanf("%s", key_input);
