@@ -45,7 +45,6 @@ int main(int argc, char** argv)
 {
     int running = 0;
     int action = -1;
-    char signal_wait[20];
     char key_input[20];
 
     
@@ -87,12 +86,18 @@ int main(int argc, char** argv)
     {
         for(int c = 0; c < 20; ++c) key_input[c] = '\0';
         system("clear");
-        printf("Bitte Waehlen:\n--------------\n1) Map anzeigen\n2)Element einfuegen\n3)Element loeschen\n4)Element suchen\n0)Programm beenden\n--------------\n");
+        printf("Bitte Waehlen:\n--------------\n1)Map anzeigen\n2)Element einfuegen\n3)Element loeschen\n4)Element suchen\n0)Programm beenden\n--------------\n");
         scanf("%d", &action);
         struct s_key * nkey;
         switch (action) {
             case 1:
                 print_array(hash_table, TABLE_LENGTH);
+                maxprobesteps = 0;
+                for (int i = 0;  i < TABLE_LENGTH; i++)
+                    if ((hash_table[i]) && (!hash_table[i]->removed))
+                        if (maxprobesteps < hash_table[i]->data)
+                            maxprobesteps = hash_table[i]->data;
+                printf("Maximale Sondierungsschritte: %d\n", maxprobesteps);
                 break;
             case 2:
                 scanf("%s", key_input);
@@ -171,8 +176,8 @@ int main(int argc, char** argv)
             break;
         }
         printf("ENTER druecken, um fortzufahren\n");
-        scanf("%s",signal_wait);
-        
+        while(getchar() != '\n');
+        getchar();
     }
     
     //Clear Map
