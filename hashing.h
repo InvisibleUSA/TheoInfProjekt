@@ -6,7 +6,7 @@
 #define THEOINFPROJEKT_HASHING_H
 
 #include "declaration.h"
-#define TABLE_LENGTH 1312
+#define TABLE_LENGTH 1294
 
 struct s_element * hash_table[TABLE_LENGTH];
 
